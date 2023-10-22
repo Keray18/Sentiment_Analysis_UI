@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const Home = () => {
   const [sentence, setSentence] = useState('')
-  const [loading, setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
   const nav = useNavigate()
 
   const handlePrediction = () => {
@@ -17,7 +17,7 @@ const Home = () => {
     })
     .then((response) => response.json())
     .then((data) => {
-      setLoading(true)
+      // setLoading(true)
       nav(`/predict?prediction=${data.prediction}`)
     })
     .catch((error) => {
@@ -30,10 +30,6 @@ const Home = () => {
 
   return (
     <div className=' flex flex-col justify-center items-center'>
-        {loading ? (
-        <div>Loading...</div> // Render a loading indicator
-      ) : (
-        <div>
           <header className='ml-1 max-w-[100%] mr-1 absolute top-1 font-semibold  m-10 md:text-3xl text-xl text-[#75D175]'>
             <h2 className=' w-[100%]'>Welcome to the Sentiment Analysis</h2>
         </header>
@@ -53,8 +49,7 @@ const Home = () => {
         </div>
 
         <Footer />
-        </div>
-      )}
+
     </div>
   )
 }
