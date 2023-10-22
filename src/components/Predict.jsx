@@ -6,7 +6,7 @@ import image from '../images/Capture2.JPG'
 
 const Predict = () => {
   const location = useLocation()
-
+  const [loading, setLoading] = useState(true)
   const [comm, setComm] = useState(true)
 
 
@@ -21,6 +21,7 @@ const Predict = () => {
     else {
       setComm(false)
     }
+    setLoading(false)
   }, [location.search])
 
 
@@ -28,7 +29,11 @@ const Predict = () => {
   
   return (
     <div className='flex flex-col justify-center items-center'>
-      {comm 
+      {loading ? (
+        <div>Loading...</div> // Render a loading indicator
+      ) : (
+        <div>
+          {comm 
       ? <div className=' flex flex-col justify-center items-center absolute top-6'>
           <h2 className='text-3xl mt-4 text-[#75D175] font-medium' >"That's a nice sentiment..."</h2>
           <h2 className='text-6xl mt-5 pt-5'>😀</h2>
@@ -41,9 +46,11 @@ const Predict = () => {
       <Link className='absolute bottom-1/2 text-xl mt-[2%] border-4-[#5DD45D] rounded-lg bg-[#5DD45D] hover:cursor-pointer' to='/'>
         <button className='font-extrabold text-[#F5E7E7] md:pr-8 md: pl-8  p-2'>Again !</button>
       </Link>
-=
+
 
       <Footer />
+        </div>
+      )}
     </div>
   )
 }
